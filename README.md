@@ -136,4 +136,4 @@ Matches only in session models, secure-store keys, fake fixture values, and priv
 
 ## Screenshots
 
-See `docs/screenshots/README.md` for capture instructions. Add PNGs before final submission.
+See `docs/screenshots/README.md` for capture instructions.

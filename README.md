@@ -110,9 +110,6 @@ German copy uses ASCII umlauts (`Zurueck`, `Faellig`) to avoid extra localizatio
 
 With another day, I would add screenshot assets under `docs/screenshots/`, an in-app debug observability panel, and broader widget coverage across every check-in step.
 
-## Time Spent
-
-Approximately 4 hours implementation and 30 minutes README/tests polish.
 
 ## Local Verification
 

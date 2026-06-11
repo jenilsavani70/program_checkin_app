@@ -76,7 +76,12 @@ class CheckInBloc extends Bloc<CheckInEvent, CheckInState> {
   }
 
   void _onFlowStarted(CheckInFlowStarted event, Emitter<CheckInState> emit) {
-    emit(state.copyWith(correlationId: event.correlationId));
+    emit(
+      state.copyWith(
+        status: CheckInStatus.editing,
+        correlationId: event.correlationId,
+      ),
+    );
   }
 
   void _onBackPressed(CheckInBackPressed event, Emitter<CheckInState> emit) {

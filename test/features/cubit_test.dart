@@ -64,6 +64,26 @@ void main() {
     },
   );
 
+  test('starting flow clears old validation error but keeps draft', () async {
+    final scope = testScope();
+    final bloc = CheckInBloc(
+      programRepository: scope.programRepository,
+      sessionRepository: scope.sessionRepository,
+      clock: scope.clock,
+      observability: scope.observability,
+    )..add(const CheckInAdherenceChanged(Adherence.completed));
+
+    bloc.add(const CheckInSubmitPressed());
+    await bloc.stream.firstWhere((state) => state.status == CheckInStatus.invalid);
+
+    bloc.add(const CheckInFlowStarted('corr_restart'));
+    await bloc.stream.firstWhere((state) => state.status == CheckInStatus.editing);
+
+    expect(bloc.state.draft.adherence, Adherence.completed);
+    expect(bloc.state.draft.progressValue, isNull);
+    expect(bloc.state.status, CheckInStatus.editing);
+  });
+
   test(
     'timeout/offline submit failure preserves draft and offers retryable state',
     () async {
